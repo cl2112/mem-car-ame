@@ -33,9 +33,9 @@ body {
 }
 
 .card {
-    height: 70%;
-    width: 56%;
-    margin: 15% 22%;
+    height: 12rem;
+    width: 8rem;
+    margin: auto;
     background: red;
 }
 
