@@ -51,7 +51,7 @@ body {
     height: 100%;
     width: 100%;
     background: black;
-    background-image: url(../images/cards/cardback.png);
+    background-image: url("../images/card-images/cardback.png");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: 0, -.1rem;
@@ -64,7 +64,7 @@ body {
     height: 100%;
     width: 100%;
     background: black;
-    background-image: url(../images/cards/angel-4.png);
+    background-image: url("../images/card-images/DS\ DSi\ -\ Phoenix\ Wright\ Ace\ Attorney\ -\ Evidence-0-2-01-00.png");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: 0, -.1rem;
