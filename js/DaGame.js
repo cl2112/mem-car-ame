@@ -121,11 +121,30 @@ const Game = {
         const cards = [];
         const fronts = this.state.cardFronts;
         const pairs = this.state.numberOfPairs;
+        const cardsPicked = pickCardsToUse();
+
+        // picks the cards to be used in play and fills the cards array.
+        function pickCardsToUse() {
+            // Used to store the cards already selected to avoid duplicates.
+            const cardsPicked = [];
+
+            while (cardsPicked.length < pairs ) {
+                const randomNumber = Math.floor(Math.random() * fronts.length);
+
+                if (!cardsPicked.includes(randomNumber)) {
+                    cardsPicked.push(randomNumber);
+                }
+            }
+
+            return cardsPicked.map( v => {
+                return fronts[v];
+            })
+        }
 
         function fillCards() {
             // choose a random image from the cardFronts array
             const randomImage =
-                fronts[Math.floor(Math.random() * fronts.length)];
+                cardsPicked[Math.floor(Math.random() * cardsPicked.length)];
 
             const dupes = cards.reduce((acc, v) => {
                 if (v === randomImage) {
