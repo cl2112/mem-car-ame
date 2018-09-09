@@ -8,16 +8,46 @@ body {
     position: relative;
     height: 100%;
     width: 100%;
+    background: url('../images/courtroomfront.png');
+    background-blend-mode: luminosity;
+    background-position: center;
+    background-size: cover;
 }
 
 .container {
     position: relative;
     height: calc(100% - 4rem);
     width: calc(100% - 4rem);
-    background: lightblue;
-    border: 1rem solid rgba(255, 255, 255, .4);
+    background: #3f5690e6;
+    border: 1rem solid #04315a40;
     /* border-radius: .5rem; */
     padding: 1rem;
+    
+}
+
+.menu-wrapper {
+    display: grid;
+    position: absolute;
+    width: calc(30% - 1rem);
+    height: calc(60% - 2rem);
+    left: 60%;
+    top: calc(20% + 1rem);
+    grid-template-columns: auto;
+    grid-template-rows: repeat(4, 1fr);
+    grid-row-gap: 10%;
+    grid-column-gap: 10%;
+}
+
+.menu-btn {
+    border: 0.4rem solid #dcdcdc69;
+    border-radius: 0.3rem;
+    background: red;
+    font-size: 60px;
+    text-align: center;  
+}
+
+.menu-btn:hover {
+    background: lightcoral;
 }
 
 .wrapper {
