@@ -1,7 +1,3 @@
-// document.querySelector('.card').addEventListener('click', ()=>{
-//     this.classList.toggle('card-flipped');
-// })
-
 /* 
     Start Screen
 */
@@ -37,12 +33,62 @@ function initStartScreen() {
         ];
 
         createButtons(mainMenuButtons);
+
+        // Button functions
+        function StoryBtn() {
+            console.log("story btn clicked", this);
+
+            const storyMenuButtons = [
+                {
+                    text: "Chapter 1",
+                    function: chapter1Btn
+                },
+                {
+                    text: "Chapter 2",
+                    function: chapter2Btn
+                },
+                {
+                    text: "Chapter 3",
+                    function: chapter3Btn
+                },
+                {
+                    text: "Main Menu",
+                    function: mainBtn
+                }
+            ];
+
+            createButtons(storyMenuButtons);
+
+            function chapter1Btn() {
+                console.log("chapter 1 btn clicked", this);
+            }
+
+            function chapter2Btn() {
+                console.log("chapter 2 btn clicked", this);
+            }
+
+            function chapter3Btn() {
+                console.log("chapter 3 btn clicked", this);
+            }
+        }
+
+        function ArcadeBtn() {
+            console.log("arcade btn clicked", this);
+        }
+
+        function OptionsBtn() {
+            console.log("options btn clicked", this);
+        }
+
+        function CreditsBtn() {
+            console.log("creadits btn clicked", this);
+        }
     }
 
     function createButtons(buttons) {
         // remove any previous buttons
         wrapper.querySelectorAll("div").forEach(v => wrapper.removeChild(v));
-        
+
         // create the buttons for the menu options
         buttons.forEach(v => {
             const btn = document.createElement("div");
@@ -53,56 +99,6 @@ function initStartScreen() {
 
             wrapper.appendChild(btn);
         });
-    }
-
-    // Button functions
-    function StoryBtn() {
-        console.log("story btn clicked", this);
-
-        const storyMenuButtons = [
-            {
-                text: "Chapter 1",
-                function: chapter1Btn
-            },
-            {
-                text: "Chapter 2",
-                function: chapter2Btn
-            },
-            {
-                text: "Chapter 3",
-                function: chapter3Btn
-            },
-            {
-                text: "Main Menu",
-                function: mainBtn
-            }
-        ];
-
-        createButtons(storyMenuButtons);
-
-        function chapter1Btn() {
-            console.log("chapter 1 btn clicked", this);
-        }
-
-        function chapter2Btn() {
-            console.log("chapter 2 btn clicked", this);
-        }
-
-        function chapter3Btn() {
-            console.log("chapter 3 btn clicked", this);
-        }
-    }
-
-    function ArcadeBtn() {
-        console.log("arcade btn clicked", this);
-    }
-
-    function OptionsBtn() {
-        console.log("options btn clicked", this);
-    }
-
-    function CreditsBtn() {
-        console.log("creadits btn clicked", this);
     }
 }
 
