@@ -50,7 +50,7 @@ body {
     background: lightcoral;
 }
 
-.wrapper {
+.card-wrapper {
     position: relative;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -66,7 +66,7 @@ body {
 }
 
 .card {
-    transition: 3s;
+    transition: 1s;
     transform-style: preserve-3d;
     position: relative;
     height: 10.8rem;
