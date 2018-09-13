@@ -1,5 +1,7 @@
 import cardRefs from "../data/card-refs.js";
 
+import initMenu from '../menu/InitMenu.js';
+
 function Game() {
     (this.state = {
         hasStarted: false
@@ -79,9 +81,11 @@ function Game() {
             const menuWrapper = document.querySelector(".menu-wrapper");
 
             // remove any previous buttons
-            menuWrapper
-                .querySelectorAll("div")
-                .forEach(v => menuWrapper.removeChild(v));
+            // menuWrapper
+            //     .querySelectorAll("div")
+            //     .forEach(v => menuWrapper.removeChild(v));
+
+            menuWrapper.parentElement.removeChild(menuWrapper);
 
             const cardWrapper = document.createElement("div");
             cardWrapper.classList.add("card-wrapper");
@@ -136,6 +140,7 @@ function Game() {
                 ) {
                     console.log("Correct!");
 
+                    this.state.correctMatches++;
                     thisElement.style.visibility = "hidden";
                     this.state.cardFlipped[0].style.visibility = "hidden";
                     this.state.cardFlipped = [];
@@ -149,6 +154,15 @@ function Game() {
                         this.state.cardFlipped = [];
                     }, 1000);
                 }
+            }
+
+            if (this.state.correctMatches === this.state.numberOfPairs) {
+                console.log('Congrats, you won!');
+
+                const cardWrapper = document.querySelector('.card-wrapper');
+                cardWrapper.parentElement.removeChild(cardWrapper);
+
+                initMenu();
             }
         });
 }
