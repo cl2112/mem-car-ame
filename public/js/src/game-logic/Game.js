@@ -14,7 +14,8 @@ function Game() {
                 cardFronts: cardRefs,
                 cardFlipped: [],
                 cardsObjects: [],
-                hasStarted: true
+                hasStarted: true,
+                canSelectCard: true
             };
 
             this.render();
@@ -101,6 +102,7 @@ function Game() {
 
                 card.classList.add("card");
                 card.dataset.name = v;
+                card.dataset.index = i;
 
                 cardBack.classList.add("card-back");
 
@@ -123,6 +125,8 @@ function Game() {
 
             let thisElement = event.target;
 
+            if (!this.state.canSelectCard) return;
+
             // Check if the event.target is the card-front/card-back or the card div.
             if (thisElement.classList.contains("card")) {
                 thisElement.classList.toggle("card-flipped");
@@ -134,9 +138,12 @@ function Game() {
             if (this.state.cardFlipped.length === 0) {
                 this.state.cardFlipped.push(thisElement);
             } else {
+                this.disableCardSelect();
                 if (
                     thisElement.dataset.name ===
-                    this.state.cardFlipped[0].dataset.name
+                    this.state.cardFlipped[0].dataset.name && 
+                    thisElement.dataset.index !== 
+                    this.state.cardFlipped[0].dataset.index
                 ) {
                     console.log("Correct!");
 
@@ -165,6 +172,12 @@ function Game() {
                 initMenu();
             }
         });
+        this.disableCardSelect = function (time = 1500) {
+            this.state.canSelectCard = false;
+            setTimeout(()=>{
+                this.state.canSelectCard = true;
+            }, time)
+        }
 }
 
 export default Game;
