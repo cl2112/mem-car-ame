@@ -1,183 +1,226 @@
 import cardRefs from "../data/card-refs.js";
 
-import initMenu from '../menu/InitMenu.js';
+import initMenu from "../menu/InitMenu.js";
 
 function Game() {
-    (this.state = {
-        hasStarted: false
-    }),
-        (this.initialize = function() {
-            this.state = {
-                timer: 60,
-                numberOfPairs: 4,
-                correctMatches: 0,
-                cardFronts: cardRefs,
-                cardFlipped: [],
-                cardsObjects: [],
-                hasStarted: true,
-                canSelectCard: true
-            };
+	this.state = {
+		hasStarted: false
+	};
 
-            this.render();
-        }),
-        (this.createCards = function() {
-            const cards = [];
-            const fronts = this.state.cardFronts;
-            const pairs = this.state.numberOfPairs;
-            const cardsPicked = pickCardsToUse();
+	// Sets the state for the game and calls the render function, starting
+	// the game.
+	this.initialize = function() {
+		this.state = {
+			timer: 60,
+			numberOfPairs: 4,
+			correctMatches: 0,
+			cardFronts: cardRefs,
+			cardFlipped: [],
+			cardsObjects: [],
+			hasStarted: true,
+			canSelectCard: true
+		};
+		
+		this.render();
+	};
 
-            // picks the cards to be used in play and fills the cards array.
-            function pickCardsToUse() {
-                // Used to store the cards already selected to avoid duplicates.
-                const cardsPicked = [];
+	// Picks and creates the card elements.
+	this.createCards = function() {
+		const cards = [];
+		const fronts = this.state.cardFronts;
+		const pairs = this.state.numberOfPairs;
+		const cardsPicked = pickCardsToUse();
 
-                while (cardsPicked.length < pairs) {
-                    const randomNumber = Math.floor(
-                        Math.random() * fronts.length
-                    );
+		// picks the cards to be used in play and fills the cards array.
+		function pickCardsToUse() {
+			// Used to store the cards already selected to avoid duplicates.
+			const cardsPicked = [];
 
-                    if (!cardsPicked.includes(randomNumber)) {
-                        cardsPicked.push(randomNumber);
-                    }
-                }
+			// Loop that picks cards from the pool of cards until there are
+			// enough unique cards for the number of pairs of cards needed.
+			while (cardsPicked.length < pairs) {
+				// If there aren't enough cards pick yet...
+				
+				// Pick a number randomly from the array of possible cards.
+				const randomNumber = Math.floor(Math.random() * fronts.length);
 
-                return cardsPicked.map(v => {
-                    return fronts[v];
-                });
-            }
+				// Check if the number (card) has already been picked.
+				if (!cardsPicked.includes(randomNumber)) {
+					// If the number has not been picked yet...
 
-            function fillCards() {
-                // choose a random image from the cardFronts array
-                const randomImage =
-                    cardsPicked[Math.floor(Math.random() * cardsPicked.length)];
+					// Add the number to the cardsPicked array.
+					cardsPicked.push(randomNumber);
+				}
+			}
 
-                const dupes = cards.reduce((acc, v) => {
-                    if (v === randomImage) {
-                        return acc + 1;
-                    } else {
-                        return acc;
-                    }
-                }, 0);
+			// Return the image location of each card picked using the 
+			// numbers selected as the index locations of the card pool.
+			return cardsPicked.map(v => {
+				return fronts[v];
+			});
+		}
 
-                if (dupes < 2) {
-                    cards.push(randomImage);
+		function fillCards() {
+			// choose a random image from the cardFronts array
+			const randomImage =
+				cardsPicked[Math.floor(Math.random() * cardsPicked.length)];
 
-                    if (cards.length < pairs * 2) {
-                        fillCards();
-                    } else {
-                        return cards;
-                    }
-                } else {
-                    fillCards();
-                }
-            }
+			const dupes = cards.reduce((acc, v) => {
+				if (v === randomImage) {
+					return acc + 1;
+				} else {
+					return acc;
+				}
+			}, 0);
 
-            fillCards();
+			if (dupes < 2) {
+				cards.push(randomImage);
 
-            return cards;
-        }),
-        (this.render = function() {
-            const cards = this.createCards();
+				if (cards.length < pairs * 2) {
+					fillCards();
+				} else {
+					return cards;
+				}
+			} else {
+				fillCards();
+			}
+		}
 
-            const menuWrapper = document.querySelector(".menu-wrapper");
+		fillCards();
 
-            // remove any previous buttons
-            // menuWrapper
-            //     .querySelectorAll("div")
-            //     .forEach(v => menuWrapper.removeChild(v));
+		return cards;
+	};
 
-            menuWrapper.parentElement.removeChild(menuWrapper);
+	this.render = function() {
+		const cards = this.createCards();
 
-            const cardWrapper = document.createElement("div");
-            cardWrapper.classList.add("card-wrapper");
-            document.querySelector(".container").appendChild(cardWrapper);
+		const menuWrapper = document.querySelector(".menu-wrapper");
 
-            cards.forEach((v, i) => {
-                const cardBack = document.createElement("div");
-                const cardFront = document.createElement("div");
-                const card = document.createElement("div");
+		// remove any previous buttons
+		// menuWrapper
+		//     .querySelectorAll("div")
+		//     .forEach(v => menuWrapper.removeChild(v));
 
-                cardFront.style.backgroundImage = `url("./images/card-images/${v}")`;
-                cardFront.classList.add("card-front");
+		menuWrapper.parentElement.removeChild(menuWrapper);
 
-                card.classList.add("card");
-                card.dataset.name = v;
-                card.dataset.index = i;
+		const cardWrapper = document.createElement("div");
+		cardWrapper.classList.add("card-wrapper");
+		document.querySelector(".container").appendChild(cardWrapper);
 
-                cardBack.classList.add("card-back");
+		cards.forEach((v, i) => {
+			const cardBack = document.createElement("div");
+			const cardFront = document.createElement("div");
+			const card = document.createElement("div");
 
-                card.appendChild(cardBack);
-                card.appendChild(cardFront);
+			cardFront.style.backgroundImage = `url("./images/card-images/${v}")`;
+			cardFront.classList.add("card-front");
 
-                console.log(card);
+			card.classList.add("card");
+			card.dataset.name = v;
+			card.dataset.index = i;
 
-                cardWrapper.appendChild(card);
+			cardBack.classList.add("card-back");
 
-                document
-                    .querySelectorAll(".card")
-                    [i].addEventListener("click", e => {
-                        this.checkGameState(e);
-                    });
-            });
-        }),
-        (this.checkGameState = function(event) {
-            console.log("check game state");
+			card.appendChild(cardBack);
+			card.appendChild(cardFront);
 
-            let thisElement = event.target;
+			console.log(card);
 
-            if (!this.state.canSelectCard) return;
+			cardWrapper.appendChild(card);
 
-            // Check if the event.target is the card-front/card-back or the card div.
-            if (thisElement.classList.contains("card")) {
-                thisElement.classList.toggle("card-flipped");
-            } else {
-                thisElement.parentElement.classList.toggle("card-flipped");
-                thisElement = thisElement.parentElement;
-            }
+			document
+				.querySelectorAll(".card")
+				[i].addEventListener("click", e => {
+					this.checkGameState(e);
+				});
+		});
+	};
 
-            if (this.state.cardFlipped.length === 0) {
-                this.state.cardFlipped.push(thisElement);
-            } else {
-                this.disableCardSelect();
-                if (
-                    thisElement.dataset.name ===
-                    this.state.cardFlipped[0].dataset.name && 
-                    thisElement.dataset.index !== 
-                    this.state.cardFlipped[0].dataset.index
-                ) {
-                    console.log("Correct!");
+	// Checks and handles if the cards selected match and if all the pairs of cards have been matched.
+	this.checkGameState = function(event) {
+		// check if user clicked on the card element or card front/back and set the variable to
+		// point to the card element.
+		const thisElement = event.target.classList.contains("card")
+			? event.target
+			: event.target.parentElement;
 
-                    this.state.correctMatches++;
-                    thisElement.style.visibility = "hidden";
-                    this.state.cardFlipped[0].style.visibility = "hidden";
-                    this.state.cardFlipped = [];
-                } else {
-                    console.log("Wrong!");
-                    setTimeout(() => {
-                        thisElement.classList.toggle("card-flipped");
-                        this.state.cardFlipped[0].classList.toggle(
-                            "card-flipped"
-                        );
-                        this.state.cardFlipped = [];
-                    }, 1000);
-                }
-            }
+		// Check if the card can be clicked on, if not, then stop execution.
+		if (
+			thisElement.classList.contains("card-flipped") ||
+			!this.state.canSelectCard
+		)
+			return;
 
-            if (this.state.correctMatches === this.state.numberOfPairs) {
-                console.log('Congrats, you won!');
+		// remove the ability to click on a card, wait for the animations to finish
+		this.disableCardSelect(1000);
 
-                const cardWrapper = document.querySelector('.card-wrapper');
-                cardWrapper.parentElement.removeChild(cardWrapper);
+		// add the card-flipped class
+		thisElement.classList.add("card-flipped");
 
-                initMenu();
-            }
-        });
-        this.disableCardSelect = function (time = 1500) {
-            this.state.canSelectCard = false;
-            setTimeout(()=>{
-                this.state.canSelectCard = true;
-            }, time)
-        }
+		// Check if a card is already flipped and waiting to be matched.
+		if (this.state.cardFlipped.length === 0) {
+			// If there is no card waiting to be matched, this card is now waiting to be matched.
+			this.state.cardFlipped.push(thisElement);
+
+			// If there is a card waiting to be matched...
+		} else {
+			// Ckeck if the card waiting to be matched and the card selected have the same name, and
+			// are not the same exact card.
+			if (
+				thisElement.dataset.name ===
+					this.state.cardFlipped[0].dataset.name &&
+				thisElement.dataset.index !==
+					this.state.cardFlipped[0].dataset.index
+			) {
+				// if there is a match
+				console.log("Correct!");
+
+				// Increase number of correct matches. Used to check if all pairs have been matched.
+				this.state.correctMatches++;
+
+				// Hide both of the matched cards
+				thisElement.style.visibility = "hidden";
+				this.state.cardFlipped[0].style.visibility = "hidden";
+
+				// Reset the card waiting to be matched.
+				this.state.cardFlipped = [];
+			} else {
+				// if there is NOT a match
+				console.log("Wrong!");
+
+				// create a timeout to allow the player to see the cards flip before further actions.
+				setTimeout(() => {
+					// Remove the card-flipped class of both of the matched cards.
+					thisElement.classList.toggle("card-flipped");
+					this.state.cardFlipped[0].classList.toggle("card-flipped");
+
+					// Reset the card waiting to be matched.
+					this.state.cardFlipped = [];
+				}, 1000);
+			}
+		}
+
+		// Check if the number of matched pairs equals the total number of pairs to determine if
+		// all the pairs have been matched.
+		if (this.state.correctMatches === this.state.numberOfPairs) {
+			// If all pairs have been matched...
+			console.log("Congrats, you won!");
+
+			// Remove the entire game board.
+			const cardWrapper = document.querySelector(".card-wrapper");
+			cardWrapper.parentElement.removeChild(cardWrapper);
+
+			// Return to the menu screen.
+			initMenu();
+		}
+	};
+
+	this.disableCardSelect = function(time = 1500) {
+		this.state.canSelectCard = false;
+		setTimeout(() => {
+			this.state.canSelectCard = true;
+		}, time);
+	};
 }
 
 export default Game;

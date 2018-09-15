@@ -69,8 +69,8 @@ body {
     transition: 1s;
     transform-style: preserve-3d;
     position: relative;
-    height: 10.8rem;
-    width: 6.8rem;
+    height: 15vh;
+    width: 15vh;
     margin: auto;
     border: .6rem solid white;
     border-radius: 6px;
@@ -81,7 +81,7 @@ body {
     height: 100%;
     width: 100%;
     background: black;
-    background-image: url("../images/card-images/cardback.png");
+    background-image: url("../images/card-images/cardback-vert.png");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: 0, -.1rem;
