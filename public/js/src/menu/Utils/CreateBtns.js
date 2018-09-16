@@ -16,4 +16,4 @@ function createButtons(buttons) {
     });
 }
 
-module.exports = createButtons;
+export default createButtons;

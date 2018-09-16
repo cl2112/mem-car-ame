@@ -96,11 +96,6 @@ function Game() {
 
 		const menuWrapper = document.querySelector(".menu-wrapper");
 
-		// remove any previous buttons
-		// menuWrapper
-		//     .querySelectorAll("div")
-		//     .forEach(v => menuWrapper.removeChild(v));
-
 		menuWrapper.parentElement.removeChild(menuWrapper);
 
 		const cardWrapper = document.createElement("div");

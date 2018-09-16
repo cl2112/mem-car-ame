@@ -4,10 +4,14 @@ import MainBtn from './Main/MainBtn.js';
 function initMenu() {
     // variables for the menu options.
     const container = document.querySelector(".container");
-    const wrapper = document.createElement("div");
-    wrapper.classList.add("menu-wrapper");
-    container.appendChild(wrapper);
+    const menuWrapper = document.createElement("div");
+    const imageWrapper = document.createElement("div");
+    menuWrapper.classList.add("menu-wrapper");
+    imageWrapper.classList.add("image-wrapper");
+    container.appendChild(menuWrapper);
+    container.appendChild(imageWrapper);
 
+    
     MainBtn();
 }
 

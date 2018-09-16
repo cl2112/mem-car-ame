@@ -4,6 +4,7 @@ import OptionsBtn from './Options/OptionsBtn.js';
 import CreditsBtn from './Credits/CreditsBtn.js';
 
 import createButtons from '../Utils/CreateBtns.js';
+import ChangeImg from '../Utils/ChangeImg.js';
 
 function mainBtn() {
     const mainMenuButtons = [
@@ -25,7 +26,10 @@ function mainBtn() {
         }
     ];
 
+    const mainImage = 'Trilogy_Phoenix_Point.png';
+
     createButtons(mainMenuButtons);
+    ChangeImg(mainImage);
 }
 
 export default mainBtn;

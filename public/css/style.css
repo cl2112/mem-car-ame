@@ -1,113 +1,211 @@
 * {
-    padding: 0;
-    margin: 0;
+	padding: 0;
+	margin: 0;
 }
 
 html,
 body {
-    position: relative;
-    height: 100%;
-    width: 100%;
-    background:   url('../images/white-linen.png'),url('../images/courtroomfront.png');
-    background-blend-mode: luminosity;
-    background-position: center;
-    background-size: cover;
+	position: relative;
+	height: 100%;
+	width: 100%;
+	background: url("../images/white-linen.png"),
+		url("../images/courtroomfront.png");
+	background-blend-mode: luminosity;
+	background-position: center;
+	background-size: cover;
 }
 
 .container {
-    position: relative;
-    height: calc(100% - 4rem);
-    width: calc(100% - 4rem);
-    background: #3f5690e6;
-    border: 1rem solid #04315a40;
-    /* border-radius: .5rem; */
-    padding: 1rem;
-    
+	position: relative;
+	height: calc(100% - 4rem);
+	width: calc(100% - 4rem);
+	background: #3f5690e6;
+	border: 1rem solid #04315a40;
+	/* border-radius: .5rem; */
+	padding: 1rem;
 }
 
 .menu-wrapper {
-    display: grid;
-    position: absolute;
-    width: calc(30% - 1rem);
-    height: calc(60% - 2rem);
-    left: 60%;
-    top: calc(20% + 1rem);
-    grid-template-columns: auto;
-    grid-template-rows: repeat(4, 1fr);
-    grid-row-gap: 10%;
-    grid-column-gap: 10%;
+	display: grid;
+	position: absolute;
+	width: calc(30% - 1rem);
+	height: calc(60% - 2rem);
+	left: 60%;
+	top: calc(20% + 1rem);
+	grid-template-columns: auto;
+	grid-template-rows: repeat(4, 1fr);
+	grid-row-gap: 10%;
+	grid-column-gap: 10%;
 }
 
 .menu-btn {
-    border: 0.4rem solid #dcdcdc69;
-    border-radius: 0.3rem;
-    background: red;
-    font-size: 60px;
-    text-align: center;  
+	border: 0.4rem solid #dcdcdc69;
+	border-radius: 0.3rem;
+	background: red;
+	font-size: 60px;
+	text-align: center;
 }
 
 .menu-btn:hover {
-    background: lightcoral;
+	background: lightcoral;
+}
+
+.image-wrapper {
+	display: grid;
+	position: absolute;
+	width: 50%;
+	height: calc(100% - 2rem);
+	grid-template-columns: repeat(6, 1fr);
+	grid-template-rows: repeat(6, 1fr);
+	/* background: green; */
+}
+
+.main-image {
+    height: 100%;
+    width: 100%;
+    /* background: purple; */
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    grid-column-start: 1;
+    grid-column-end: 7;
+    grid-row-start: 1;
+    grid-row-end: 7;
+    z-index: 100;
+}
+
+/* .main-image-background {
+    height: calc(100% - 1rem);
+    width: calc(100% - 1rem);
+    background: #ffffff94;
+    grid-column-start: 1;
+    grid-column-end: 7;
+    grid-row-start: 1;
+    grid-row-end: 7;
+    border-radius: 100%;
+    border: 0.5rem solid black;
+    z-index: 10;
+    box-shadow: inset -20px -20px 13px 20px #2c5fa02e;
+} */
+
+.main-image-background-1 {
+    height: calc(100% - 1rem);
+    width: calc(100% - 1rem);
+    background: #ffffffb3;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 7;
+    border-radius: 0%;
+    border: 0.5rem solid black;
+    z-index: 10;
+    box-shadow: inset -20px -20px 13px 20px #2c5fa02e;
+}
+
+.main-image-background-2 {
+    height: calc(100% - 1rem);
+    width: calc(100% - 1rem);
+    background: #ffffff80;
+    grid-column-start: 3;
+    grid-column-end: 5;
+    grid-row-start: 1;
+    grid-row-end: 7;
+    border-radius: 0%;
+    border: 0.5rem solid black;
+    z-index: 10;
+    box-shadow: inset -20px -20px 13px 20px #2c5fa02e;
+}
+
+.main-image-background-3 {
+    height: calc(100% - 1rem);
+    width: calc(100% - 1rem);
+    background: #ffffff4d;
+    grid-column-start: 5;
+    grid-column-end: 7;
+    grid-row-start: 1;
+    grid-row-end: 7;
+    border-radius: 0%;
+    border: 0.5rem solid black;
+    z-index: 10;
+    box-shadow: inset -20px -20px 13px 20px #2c5fa02e;
+}
+
+.image-top {
+    background: red;
+    grid-column-start: 1;
+    grid-column-end: 7;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    z-index: 50;
+}
+
+.image-bottom {
+    background: black;
+    grid-column-start: 1;
+    grid-column-end: 7;
+    grid-row-start: 6;
+    grid-row-end: 7;
+    z-index: 150;
 }
 
 .card-wrapper {
-    position: relative;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    height: calc(90% - 2rem);
-    width: calc(100% - 1rem);
-    background: rgba(0, 0, 0, 0.1);
-    border-radius: .4rem;
-    margin: 0.5rem;
-    transition: transform 1s;
-    transform-style: preserve-3d;
-    perspective: 1000px;
+	position: relative;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	grid-template-rows: 1fr 1fr;
+	height: calc(90% - 2rem);
+	width: calc(100% - 1rem);
+	background: rgba(0, 0, 0, 0.1);
+	border-radius: 0.4rem;
+	margin: 0.5rem;
+	transition: transform 1s;
+	transform-style: preserve-3d;
+	perspective: 1000px;
 }
 
 .card {
-    transition: 1s;
-    transform-style: preserve-3d;
-    position: relative;
-    height: 15vh;
-    width: 15vh;
-    margin: auto;
-    border: .6rem solid white;
-    border-radius: 6px;
+	transition: 1s;
+	transform-style: preserve-3d;
+	position: relative;
+	height: 15vh;
+	width: 15vh;
+	margin: auto;
+	border: 0.6rem solid white;
+	border-radius: 6px;
 }
 
 .card-back {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    background: black;
-    background-image: url("../images/card-images/cardback-vert.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: 0, -.1rem;
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	background: black;
+	background-image: url("../images/card-images/cardback-vert.png");
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: 0, -0.1rem;
 }
 
 .card-front {
-    position: absolute;
-    backface-visibility: hidden;
-    transform: rotateY(180deg);
-    height: 100%;
-    width: 100%;
-    background: black;
-    background-image: url("../images/card-images/DS\ DSi\ -\ Phoenix\ Wright\ Ace\ Attorney\ -\ Evidence-0-2-01-00.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: 0, -.1rem;
+	position: absolute;
+	backface-visibility: hidden;
+	transform: rotateY(180deg);
+	height: 100%;
+	width: 100%;
+	background: black;
+	background-image: url("../images/card-images/DS\ DSi\ -\ Phoenix\ Wright\ Ace\ Attorney\ -\ Evidence-0-2-01-00.png");
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: 0, -0.1rem;
 }
 
 .card-flipped {
-    transform: rotateY(180deg);
+	transform: rotateY(180deg);
 }
 
 .timer {
-    height: 10%;
-    color: whitesmoke;
-    border: .5rem solid white;
-    padding: .4rem;
-    border-radius: .4rem;
+	height: 10%;
+	color: whitesmoke;
+	border: 0.5rem solid white;
+	padding: 0.4rem;
+	border-radius: 0.4rem;
 }
