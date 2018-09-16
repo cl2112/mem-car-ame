@@ -95,8 +95,10 @@ function Game() {
 		const cards = this.createCards();
 
 		const menuWrapper = document.querySelector(".menu-wrapper");
-
 		menuWrapper.parentElement.removeChild(menuWrapper);
+
+		const imageWrapper = document.querySelector(".image-wrapper");
+		imageWrapper.parentElement.removeChild(imageWrapper);
 
 		const cardWrapper = document.createElement("div");
 		cardWrapper.classList.add("card-wrapper");

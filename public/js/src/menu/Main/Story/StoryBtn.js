@@ -2,6 +2,7 @@ import Chapter1Btn from './Chapter1/Chapter1Btn.js';
 import MainBtn from '../MainBtn.js';
 
 import createButtons from '../../Utils/CreateBtns.js';
+import ChangeImg from '../../Utils/ChangeImg.js';
 
 function StoryBtn() {
     console.log("story btn clicked", this);
@@ -25,8 +26,10 @@ function StoryBtn() {
         }
     ];
 
-    createButtons(storyMenuButtons);
+    const mainImage = 'AA1_Phoenix.png'
 
+    createButtons(storyMenuButtons);
+    ChangeImg(mainImage)
     
 
     function chapter2Btn() {

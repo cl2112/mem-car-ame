@@ -6,6 +6,8 @@ import CreditsBtn from './Credits/CreditsBtn.js';
 import createButtons from '../Utils/CreateBtns.js';
 import ChangeImg from '../Utils/ChangeImg.js';
 
+import mainMenuImageRefs from "../../data/main-menu-img-refs.js";
+
 function mainBtn() {
     const mainMenuButtons = [
         {
@@ -29,7 +31,7 @@ function mainBtn() {
     const mainImage = 'Trilogy_Phoenix_Point.png';
 
     createButtons(mainMenuButtons);
-    ChangeImg(mainImage);
+    ChangeImg(mainMenuImageRefs[Math.floor(Math.random() * mainMenuImageRefs.length)]);
 }
 
 export default mainBtn;
